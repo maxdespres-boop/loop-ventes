@@ -42,6 +42,8 @@ if uploaded_file:
                 df[col] = df[col].astype(str).str.replace(r'[^\d,.-]', '', regex=True).str.replace(',', '.')
                 df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
 
-        # 4. Mapping
+        # 4. Nettoyage des codes items et Mapping (LIGNE CORRIGÉE ICI)
         df['ItemCode_Clean'] = df['ItemCode'].astype(str).str.strip()
-        df['Nom_Propre'] =
+        df['Nom_Propre'] = df['ItemCode_Clean'].map(SKU_MAPPING)
+
+        #
